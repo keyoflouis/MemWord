@@ -219,6 +219,7 @@ void insertPhrase(const Phrase& phrase ,int wordId) {
 
     if (!query.exec()) {
         qDebug() << "error insert phrase";
+        query.exec("ROLLBACK;");
     }
 }
 
@@ -232,6 +233,7 @@ void insertTranslation(const Translation& translation, int wordId) {
     
     if (!query.exec()) {
         qDebug() << "error insert translation";
+        query.exec("ROLLBACK;");
     }
 }
 
@@ -245,15 +247,24 @@ void insertWord(const Word& word,int wordgroupId) {
 
     if (!query.exec()) {
         qDebug() << "error insertWord";
+
     }
 
     int wordId = query.lastInsertId().toInt();
+
+    if (!query.exec("BEGIN TRANSACTION;")) {
+        qDebug() << "error Transaction";
+    }
 
     for (const Translation& tran : word.wordTranslation) {
         insertTranslation(tran,wordId);
     }
     for (const Phrase& phra : word.wordPhrase) {
         insertPhrase(phra, wordId);
+    }
+
+    if (!query.exec("COMMIT;")) {
+        qDebug() << "error commit";
     }
 }
 
@@ -280,9 +291,9 @@ void insertWordGroup(const WordGroup& wordgroup, int bookId) {
 
     if (!query.exec()) {
         qDebug() << "error WG";
-        return;
     }
     int wordgroupId = query.lastInsertId().toInt();
+
 
     for (const Word& word : wordgroup.words) {
         insertWord(word, wordgroupId);
@@ -292,6 +303,7 @@ void insertWordGroup(const WordGroup& wordgroup, int bookId) {
         insertSentence(sentence, wordgroupId);
     }
     
+
 }
 
 void insertBook(const Book& book) {
