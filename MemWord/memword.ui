@@ -1,26 +1,45 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>MemWordClass</class>
- <widget class="QMainWindow" name="MemWordClass" >
-  <property name="objectName" >
-   <string notr="true">MemWordClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QMainWindow" name="MemWordClass">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>400</height>
+    <height>402</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>MemWord</string>
-  </property>  <widget class="QMenuBar" name="menuBar" />
-  <widget class="QToolBar" name="mainToolBar" />
-  <widget class="QWidget" name="centralWidget" />
-  <widget class="QStatusBar" name="statusBar" />
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="main">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>581</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="file_tab">
+     <attribute name="title">
+      <string>File</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="book_tab">
+     <attribute name="title">
+      <string>Book</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
-
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
  <connections/>
-</UI>
+</ui>

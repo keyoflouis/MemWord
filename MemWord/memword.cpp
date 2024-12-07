@@ -8,3 +8,15 @@ MemWord::MemWord(QWidget *parent)
 
 MemWord::~MemWord()
 {}
+
+QGridLayout* MemWord::reFreshFileTab()
+{
+
+    return new QGridLayout();
+}
+
+QGridLayout* MemWord::reFreshBookTab()
+{
+
+    return nullptr;
+}
