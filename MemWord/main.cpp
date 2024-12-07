@@ -1,5 +1,6 @@
-#include"qsqlquery.h"
-#include"qsqldatabase.h"
+#include"qpushbutton.h"
+
+
 #include"qjsonarray.h"
 #include "memword.h"
 #include <QtWidgets/QApplication>
@@ -9,7 +10,15 @@
 #include"qjsondocument.h"
 #include"qjsonobject.h"
 #include"qjsonvalue.h"
-#include"qsqlerror.h"
+
+
+
+
+
+
+
+
+
 //  data in logic
 class Translation {
 public:
@@ -73,7 +82,7 @@ class Sentence {
 public:
 	QString sentenceContext;
 	Sentence() {
-		this->sentenceContext = NULL;
+		this->sentenceContext = "write your para";
 	}
 	void display() {
 		qDebug() << "sentenceContext:" << sentenceContext;
@@ -98,6 +107,8 @@ public:
 
 		this->sentences;
 		this->words;
+		
+		sentences.append(Sentence());
 	}
 
 	void display() {
@@ -436,18 +447,7 @@ void insertBook(const Book& book) {
 }
 
 void deposit(const Book& book) {
-
-	QString dbpath = "C:\\Users\\28063\\Desktop\\Mem_version3\\MemWord\\DB\\MemWord.db";
-	QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
-
-	database.setDatabaseName(dbpath);
-	if (!database.open()) {
-		qDebug() << "can't open";
-	}
-
 	insertBook(book);
-
-	database.close();
 }
 
 
@@ -732,14 +732,113 @@ QList<WordGroupSchema> findUnlearned(int bookId, int numb) {
 	return re_group;
 }
 
+QList<BookSchema> allBook() {
+	QSqlQuery query;
+	query.prepare("SELECT * FROM Book");
+
+	if (!query.exec()) {
+		qDebug() << "erro allBook";
+	}
+
+	QList<BookSchema> books;
+	while (query.next())
+	{
+		BookSchema book;
+		book.bookId = query.value("book_id").toInt();
+		book.bookName = query.value("book_name").toString();
+		book.bookDescription = query.value("book_description").toString();
+		books.append(book);
+	}
+
+	return books;
+}
+
+
+
+/// modify data
+///////////////////////////////
+
+bool modifyAllWordsofAWordGroup() {
+
+	return false;
+}
+
+bool modifyAllSentencesofAWordGroup() {
+
+	return false;
+}
+
+
+
+
+MemWord::MemWord(QWidget* parent)
+	: QMainWindow(parent)
+{
+	ui.setupUi(this);
+
+
+	openDatabase(database, dbpath);
+
+	ui.file_tab->setLayout(reFreshFileTab());
+	ui.book_tab->setLayout(reFreshBookTab());
+
+
+	
+
+}
+
+MemWord::~MemWord()
+{
+	closeDatabase(database);
+}
+
+QGridLayout* MemWord::reFreshFileTab()
+{
+
+	return new QGridLayout();
+}
+
+QGridLayout* MemWord::reFreshBookTab()
+{
+	QGridLayout* bookLayOut = new QGridLayout();
+
+	QSqlQuery query;
+	QList<BookSchema> allbooks = allBook();
+	
+
+	for (const BookSchema& book : allbooks) {
+		QPushButton* but= new QPushButton(book.bookName);
+		bookLayOut->addWidget(but);
+		connect(but, QPushButton::clicked, this, [=]() {
+
+			});
+	}
+
+
+	return bookLayOut;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int main(int argc, char* argv[])
 {
 	QApplication a(argc, argv);
 	MemWord w;
-	QString dbpath = "C:\\Users\\28063\\Desktop\\Mem_version3\\MemWord\\DB\\MemWord.db";
-	QSqlDatabase database;
-	openDatabase(database, dbpath);
+
+	
 
 	 //QString path = "C:\\Users\\28063\\Desktop\\Mem_version3\\MemWord\\file\\cet4.json";
 	 //Book newbook = initeBook(path);
@@ -750,6 +849,6 @@ int main(int argc, char* argv[])
 
 	w.show();
 
-	closeDatabase(database);
+	
 	return a.exec();
 }
