@@ -1,9 +1,14 @@
 #include "memword.h"
 
+#include"bookui.h"
 #include"all_func_definition.h"
+
 #include"qpushbutton.h"
 
-
+void initBookUi(BookSchema bookschema){
+	BookUI* bookui = new BookUI(nullptr,bookschema);
+	bookui->show();
+}
 
 MemWord::MemWord(QWidget* parent)
 	: QMainWindow(parent)
@@ -15,9 +20,6 @@ MemWord::MemWord(QWidget* parent)
 
 	ui.file_tab->setLayout(reFreshFileTab());
 	ui.book_tab->setLayout(reFreshBookTab());
-
-
-
 
 }
 
@@ -39,12 +41,13 @@ QGridLayout* MemWord::reFreshBookTab()
 	QSqlQuery query;
 	QList<BookSchema> allbooks = allBook();
 
-
+	// generate but for book ui
 	for (const BookSchema& book : allbooks) {
 		QPushButton* but = new QPushButton(book.bookName);
 		bookLayOut->addWidget(but);
 		connect(but, &QPushButton::clicked, this, [=]() {
-
+			initBookUi(book);
+			this->close();
 			});
 	}
 

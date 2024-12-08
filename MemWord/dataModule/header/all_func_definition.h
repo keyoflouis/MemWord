@@ -1,5 +1,9 @@
 #include"allclassheaders.h"
 
+#include"qsqldatabase.h"
+#include"qsqlquery.h"
+
+
 // file to book
 ////////////////////////////////////////////////////////////////////////
 Book initeBook(QString path);
@@ -47,6 +51,10 @@ BookSchema loadBookSchema(QString bookname);
 QList<SentenceSchema> findAGroupOfSentences(int wordgroupId);
 
 QList<WordSchema> findAGroupOfWords(int wordgroupId);
+
+QList<PhraseSchema> findAWordPhrase(int wordId);
+
+QList<TranslationSchema> findAWordTranslation(int wordId);
 
 QList<WordGroupSchema> findAllWordGroup(int bookId);
 

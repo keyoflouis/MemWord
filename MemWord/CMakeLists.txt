@@ -21,6 +21,14 @@ set(PROJECT_SOURCES
     memword.ui
     memword.h
     memword.cpp
+
+    bookui.cpp
+    bookui.h
+    bookui.ui
+
+    wordgroupui.cpp
+    wordgroupui.h
+    wordgroupui.ui
 )
 
 add_subdirectory(dataModule)

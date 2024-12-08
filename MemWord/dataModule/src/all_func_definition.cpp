@@ -447,6 +447,59 @@ QList<WordSchema> findAGroupOfWords(int wordgroupId) {
 	return wordlist;
 }
 
+QList<PhraseSchema> findAWordPhrase(int wordId) {
+
+	QList<PhraseSchema> phraselist;
+
+	QSqlQuery query;
+	query.prepare("SELECT * FROM Phrase WHERE word_id = ?");
+	query.addBindValue(wordId);
+
+	if (!query.exec()) {
+		qDebug() << "error findAWordPhrase" << query.lastError();
+	}
+	else
+	{
+		while (query.next())
+		{
+			PhraseSchema phrase;
+			phrase.phraseId = query.value("phrase_id").toInt();
+			phrase.phraseContext = query.value("phrase_context").toString();
+			phrase.phraseTranslation = query.value("phrase_translation").toString();
+			phrase.wordId = wordId;
+			phraselist.append(phrase);
+		}
+	}
+
+	return phraselist;
+}
+
+QList<TranslationSchema> findAWordTranslation(int wordId) {
+	QList<TranslationSchema> translationlist;
+
+	QSqlQuery query;
+	query.prepare("SELECT * FROM Translation WHERE word_id =?");
+	query.addBindValue(wordId);
+
+	if (!query.exec()) {
+		qDebug() << "findAWordTranslation" << query.lastError();
+	}
+	else
+	{
+		while (query.next())
+		{
+			TranslationSchema translation;
+			translation.translationId = query.value("translation_id").toInt();
+			translation.translationContext = query.value("translation_context").toString();
+			translation.type = query.value("type").toString();
+			translation.wordId = wordId;
+			translationlist.append(translation);
+		}
+	}
+	return translationlist;
+}
+
+
 QList<WordGroupSchema> findAllWordGroup(int bookId) {
 	QList<WordGroupSchema> group;
 	QSqlQuery query;
