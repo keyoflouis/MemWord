@@ -23,6 +23,8 @@ set(PROJECT_SOURCES
     memword.cpp
 )
 
+add_subdirectory(dataModule)
+
 qt_add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 
 set_target_properties(${PROJECT_NAME}
@@ -36,5 +38,6 @@ target_link_libraries(${PROJECT_NAME}
         Qt::Gui
         Qt::Widgets
         Qt::Sql
-)
 
+        mem_lib
+)
