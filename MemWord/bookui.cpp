@@ -17,13 +17,14 @@ BookUI::BookUI(QWidget *parent ,BookSchema bookschema)
 {
 	ui.setupUi(this);
 
+	/// 
+	/////////////////////////////////////////////
 	QVBoxLayout* bookLayOut = new QVBoxLayout();
-
 	QLabel* bookName =new QLabel();
 	bookName->setText(bookschema.bookName);
-
 	QLabel* bookDescription = new QLabel();
 	bookDescription->setText(bookschema.bookDescription);
+
 
 	QPushButton* learn = new QPushButton();
 	learn->setText("Learn");
@@ -65,8 +66,10 @@ BookUI::BookUI(QWidget *parent ,BookSchema bookschema)
 		mediaUI->show();
 		this->close();
 		});
-
-
+	
+	
+	/// review mediaui
+	////////////////////////////////////////////////
 	QPushButton* review = new QPushButton();
 	review->setText("Review");
 	connect(review, &QPushButton::clicked, this, [=]() {

@@ -19,11 +19,11 @@ find_package(Qt${QT_VERSION_MAJOR}
         Sql  
 )
 
-message("----------------------------------------${HEADERS}")
-message("----------------------------------------${SOURCES}")
+#message("----------------------------------------${HEADERS}")
+#message("----------------------------------------${SOURCES}")
 
 
-message("Qt version: ${Qt${QT_VERSION_MAJOR}_VERSION}")
+#message("Qt version: ${Qt${QT_VERSION_MAJOR}_VERSION}")
 
 add_library(mem_lib STATIC)
 target_sources(mem_lib PRIVATE ${SOURCES} ${HEADERS})
