@@ -3,7 +3,8 @@
 
 #include"all_func_definition.h"
 
-
+#include"qwizard.h"
+#include"qdockwidget.h"
 
 
 int main(int argc, char* argv[])
@@ -17,9 +18,6 @@ int main(int argc, char* argv[])
 	
 	//QList<WordGroupSchema> re = findUnlearned(1, 5);
 
-
 	w.show();
-
-	
 	return a.exec();
 }

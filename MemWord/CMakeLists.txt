@@ -29,6 +29,26 @@ set(PROJECT_SOURCES
     wordgroupui.cpp
     wordgroupui.h
     wordgroupui.ui
+
+    learnwordgroupwidget.cpp
+    learnwordgroupwidget.ui
+    learnwordgroupwidget.h
+
+    selectwordwidget.cpp
+    selectwordwidget.ui
+    selectwordwidget.h
+
+    writesentencewidget.cpp
+    writesentencewidget.ui
+    writesentencewidget.h
+
+    wordwidget.cpp
+    wordwidget.h
+    wordwidget.ui
+
+    orgschemadata.cpp
+    orgschemadata.h
+
 )
 
 add_subdirectory(dataModule)

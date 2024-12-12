@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WordGroupUI</class>
- <widget class="QWidget" name="WordGroupUI">
+ <class>LearnWordGroupWidget</class>
+ <widget class="QWidget" name="LearnWordGroupWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1003</width>
-    <height>754</height>
+    <width>719</width>
+    <height>685</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>WordGroupUI</string>
+   <string>LearnWordGroupWidget</string>
   </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
