@@ -8,10 +8,20 @@
 class SelectWordWidget : public QWidget
 {
 	Q_OBJECT
+public:
+	wordgroup_data agroupuidata;
 
 public:
-	SelectWordWidget(QWidget *parent , wordgroup_data& agroupuidata);
+	SelectWordWidget(QWidget *parent , wordgroup_data agroupuidata);
 	~SelectWordWidget();
+
+public:
+	void Refresh();
+	void emiteRefreshData(wordgroup_data agroupuidata);
+
+public:
+signals:
+	void refreshData(wordgroup_data agroupuidata);
 
 private:
 	Ui::SelectWordWidget ui;

@@ -23,16 +23,18 @@ LearnWordGroupWidget::LearnWordGroupWidget(QWidget *parent , wordgroup_data agro
 	
 	QVBoxLayout* layout = new QVBoxLayout();
 	QStackedWidget* aset = new QStackedWidget();
+	SelectWordWidget* the_select_ui = initSelectUI(agroupuidata);
+	WriteSentenceWidget* the_write_ui = initeWriteSentenceUI(agroupuidata);
 
-	aset->addWidget(initSelectUI(agroupuidata));
-	aset->addWidget(initeWriteSentenceUI(agroupuidata));
-
+	aset->addWidget(the_select_ui);
+	aset->addWidget(the_write_ui);
 	aset->setCurrentIndex(0);
 	layout->addWidget(aset);
 
+	connect(the_select_ui, &SelectWordWidget::refreshData, the_write_ui, &WriteSentenceWidget::onRefresh);
+
 
 	QHBoxLayout* buts = new QHBoxLayout();
-
 	QPushButton* nextPage = new QPushButton();
 	QPushButton* beforePage = new QPushButton();
 	nextPage->setText("next step");
