@@ -561,12 +561,51 @@ QList<BookSchema> allBook() {
 	return books;
 }
 
-bool modifyAllWordsofAWordGroup() {
 
-	return false;
+
+
+////////////////////////////
+void updateAWord(WordSchema word) {
+	QSqlQuery query;
+	query.prepare("UPDATE Word SET word_context = ? ,word_mark = ? WHERE wordgroup_id = ? and word_id = ?");
+
+	query.addBindValue(word.wordContext);
+	query.addBindValue(word.wordMark);
+	query.addBindValue(word.wordgroupId);
+	query.addBindValue(word.wordId);
+
+	if (!query.exec()) {
+		qDebug() << "error updateAWord";
+	}
+
 }
 
-bool modifyAllSentencesofAWordGroup() {
+void updateASentence(SentenceSchema sent) {
+	QSqlQuery query;
+	query.prepare("UPDATE Sentence SET sentence_context = ? WHERE sentence_id = ? and wordgroup_id = ?");
 
-	return false;
+	query.addBindValue(sent.sentenceContext);
+	query.addBindValue(sent.sentenceId);
+	query.addBindValue(sent.wordgroupId);
+
+	if (!query.exec()) {
+		qDebug() << "error updateASentence";
+	}
+}
+
+void updateAGroup(WordGroupSchema wordgroup) {
+	QSqlQuery query;
+
+	query.prepare("UPDATE WordGroup SET wordgroup_tag = ? ,sentence_reference = ? ,wordgroup_mark = ? ,note = ? WHERE wordgroup_id = ? and book_id = ?");
+	query.addBindValue(wordgroup.wordgroupTag);
+	query.addBindValue(wordgroup.sentenceReference);
+	query.addBindValue(wordgroup.wordgroupMark);
+	query.addBindValue(wordgroup.note);
+	query.addBindValue(wordgroup.wordgroupId);
+	query.addBindValue(wordgroup.bookId);
+
+	if (!query.exec()) {
+		qDebug() << "error updateAGroup";
+	}
+
 }

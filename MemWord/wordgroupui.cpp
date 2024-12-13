@@ -16,6 +16,8 @@ void WordGroupUI::initeUIData(QList<WordGroupSchema> wordgroups)
 	}
 }
 
+
+
 // create sub widget
 LearnWordGroupWidget* initeLearnWordGroupWidget(wordgroup_data agroupuidata) {
 
@@ -49,11 +51,14 @@ WordGroupUI::WordGroupUI(QWidget *parent ,QList<WordGroupSchema> wordgroups )
 	}
 	sub_wordgroupUI->setCurrentIndex(0);
 
+
+
 	connect(nextGroup, &QPushButton::clicked, this, [=]() {
-		
 		if (sub_wordgroupUI->currentIndex() < sub_wordgroupUI->count()-1) {
 			sub_wordgroupUI->setCurrentIndex(sub_wordgroupUI->currentIndex() + 1);
 		}
+
+
 		});
 	connect(beforeGroup, &QPushButton::clicked, this, [=]() {
 		if (sub_wordgroupUI->currentIndex() >0) {

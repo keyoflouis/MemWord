@@ -17,7 +17,11 @@ public:
 
 public:
 	void Refresh();
-	void emiteRefreshData(wordgroup_data agroupuidata);
+	void emiteRefreshData();
+	void handleCheckBoxStateChange(int state, int row, const word_data& wd);
+
+public slots:
+	void onRefresh(wordgroup_data agroupuidata);
 
 public:
 signals:

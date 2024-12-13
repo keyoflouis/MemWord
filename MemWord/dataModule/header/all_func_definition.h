@@ -62,12 +62,15 @@ QList<WordGroupSchema> findUnlearned(int bookId, int numb);
 
 QList<BookSchema> allBook();
 
-
-
 /// modify data
 ///////////////////////////////
+void updateAWord(WordSchema word);
 
-bool modifyAllWordsofAWordGroup();
+void updateASentence(SentenceSchema sent);
 
-bool modifyAllSentencesofAWordGroup();
+void updateAGroup(WordGroupSchema wordgroup);
+
+
+
+
 

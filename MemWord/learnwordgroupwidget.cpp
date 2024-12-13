@@ -32,7 +32,7 @@ LearnWordGroupWidget::LearnWordGroupWidget(QWidget *parent , wordgroup_data agro
 	layout->addWidget(aset);
 
 	connect(the_select_ui, &SelectWordWidget::refreshData, the_write_ui, &WriteSentenceWidget::onRefresh);
-
+	connect(the_write_ui, &WriteSentenceWidget::refreshData, the_select_ui, &SelectWordWidget::onRefresh);
 
 	QHBoxLayout* buts = new QHBoxLayout();
 	QPushButton* nextPage = new QPushButton();
@@ -51,6 +51,7 @@ LearnWordGroupWidget::LearnWordGroupWidget(QWidget *parent , wordgroup_data agro
 		}
 		else
 		{
+			the_select_ui->emiteRefreshData();
 			aset->setCurrentIndex(1);
 		}
 		
@@ -63,6 +64,7 @@ LearnWordGroupWidget::LearnWordGroupWidget(QWidget *parent , wordgroup_data agro
 		}
 		else
 		{
+			the_write_ui->emiterefreshData();
 			aset->setCurrentIndex(0);
 		}
 

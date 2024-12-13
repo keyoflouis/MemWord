@@ -15,13 +15,23 @@ public:
 class wordgroup_data
 {
 public:
+
 	QList<word_data> words;
 	QList<SentenceSchema> sentences;
+	QString note;
+	bool wordgroupMark;
+	QString sentencReference;
+	QString wordgroupTag;
+	int bookId;
+	int wordgroupId;
 
 public:
 	wordgroup_data() = default;
 	wordgroup_data(WordGroupSchema group);
+	wordgroup_data(const wordgroup_data& other);
 	~wordgroup_data();
+
+	void updateAndDeposite();
 
 private:
 

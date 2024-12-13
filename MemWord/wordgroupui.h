@@ -17,7 +17,6 @@ public:
 
 private:
 	void initeUIData(QList<WordGroupSchema> wordgroups);
-
 private:
 	Ui::WordGroupUI ui;
 };
