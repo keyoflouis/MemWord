@@ -8,12 +8,7 @@
 
 void WordGroupUI::initeUIData(QList<WordGroupSchema> wordgroups)
 {
-	datas_wordgroupui;
-
-	for (WordGroupSchema& item : wordgroups) {
-		wordgroup_data agroup(item);
-		datas_wordgroupui.append(agroup);
-	}
+	this->datas_wordgroupui = convertTo(wordgroups);
 }
 
 
@@ -46,7 +41,7 @@ WordGroupUI::WordGroupUI(QWidget *parent ,QList<WordGroupSchema> wordgroups )
 
 
 	QStackedWidget* sub_wordgroupUI = new QStackedWidget();
-	for (auto i:this->datas_wordgroupui) {
+	for (auto &i:this->datas_wordgroupui) {
 		sub_wordgroupUI->addWidget(initeLearnWordGroupWidget(i));
 	}
 	sub_wordgroupUI->setCurrentIndex(0);

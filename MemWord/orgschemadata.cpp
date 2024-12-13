@@ -1,6 +1,35 @@
 #include"orgschemadata.h"
 #include"all_func_definition.h"
 
+QList<wordgroup_data> convertTo(QList<WordGroupSchema> wordgroups) {
+	QList<wordgroup_data> datas_wordgroupui;
+
+	for (WordGroupSchema& item : wordgroups) {
+		wordgroup_data agroup(item);
+		datas_wordgroupui.append(agroup);
+	}
+	return datas_wordgroupui;
+}
+
+QList<WordGroupSchema> convertBack(QList<wordgroup_data> datas_wordgroupui) {
+	return QList<WordGroupSchema>();
+}
+
+WordGroupSchema convertAGroupBack(wordgroup_data wdata) {
+
+	WordGroupSchema wordgroup;
+	wordgroup.bookId= wdata.bookId;
+	wordgroup.note = wdata.note;
+	wordgroup.sentenceReference = wdata.sentencReference;
+	wordgroup.wordgroupId = wdata.wordgroupId;
+	wordgroup.wordgroupMark = wdata.wordgroupMark;
+	wordgroup.wordgroupTag = wdata.wordgroupTag;
+
+	return wordgroup;
+}
+
+
+
 wordgroup_data::wordgroup_data(WordGroupSchema group)
 {
 	this->note = group.note;

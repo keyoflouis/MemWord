@@ -31,9 +31,15 @@ public:
 	wordgroup_data(const wordgroup_data& other);
 	~wordgroup_data();
 
+
 	void updateAndDeposite();
 
 private:
 
 };
 
+QList<wordgroup_data> convertTo(QList<WordGroupSchema> wordgroups);
+
+QList<WordGroupSchema> convertBack(QList<wordgroup_data> datas_wordgroupui);
+
+WordGroupSchema convertAGroupBack(wordgroup_data wdata);

@@ -32,9 +32,11 @@ void WriteSentenceWidget::refresh()
 	ui.referencelist ->setText(agroupuidata.sentencReference);
 	connect(ui.note, &QTextEdit::textChanged, this, [=]() {
 		agroupuidata.note = ui.note->toPlainText();
+		emiterefreshData();
 		});
 	connect(ui.referencelist, &QTextEdit::textChanged, this, [=]() {
 		agroupuidata.sentencReference = ui.referencelist->toPlainText();
+		emiterefreshData();
 		});
 
 
@@ -59,6 +61,7 @@ void WriteSentenceWidget::refresh()
 
 		connect(item, &QTextEdit::textChanged, this, [=]() {
 			agroupuidata.sentences[i].sentenceContext = (item->toPlainText());
+			emiterefreshData();
 			});
 
 	}
