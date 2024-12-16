@@ -77,6 +77,9 @@ LearnWordGroupWidget::LearnWordGroupWidget(QWidget *parent , wordgroup_data agro
 
 	connect(store, &QPushButton::clicked, this, [=] {
 		WordGroupSchema dep = convertAGroupBack(the_select_ui->agroupuidata);
+
+		dep.wordgroupMark = true;
+
 		updateAGroup(dep);
 		for (auto &i: the_select_ui->agroupuidata.sentences) {
 			updateASentence(i);

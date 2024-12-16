@@ -26,7 +26,21 @@ void SelectWordWidget::Refresh()
     for (int row = 0; row < agroupuidata.words.size(); ++row) {
         const word_data& wd = agroupuidata.words[row];
         ui.wordlist->setItem(row, 0, new QTableWidgetItem(wd.word.wordContext));
-        ui.wordlist->setItem(row, 1, new QTableWidgetItem(" "));
+
+        if (wd.word.wordMark) {
+            QString showtranslation;
+            for (const auto& tran : wd.trans) {
+                if (tran.wordId == wd.word.wordId) {
+                    showtranslation += QString("%1 %2 ").arg(tran.type, tran.translationContext);
+                }
+            }
+            ui.wordlist->setItem(row, 1, new QTableWidgetItem(showtranslation));
+        }
+        else
+        {
+            ui.wordlist->setItem(row, 1, new QTableWidgetItem(" "));
+        }
+        
 
         QCheckBox* checkword = new QCheckBox();
         checkword->setChecked(wd.word.wordMark);
